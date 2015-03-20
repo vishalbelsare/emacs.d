@@ -39,6 +39,18 @@ file if open."
             (other-window 1))
         (message (format "buffer not found: %s" b))))))
 
+(defun gf/tmux-phpunit-file ()
+  "Run phpunit for this file in a tmux pane."
+  (interactive)
+  (save-buffer)
+  (emamux:run-command (concat "phpunit " (buffer-file-name)) (projectile-project-root)))
+
+(defun gf/tmux-phpunit ()
+  "Run phpunit in a tmux pane."
+  (interactive)
+  (save-buffer)
+  (emamux:run-command "phpunit" (projectile-project-root)))
+
 (defun gf/php-go-to-namespace ()
   "Go to the namespace declaration at the top of this file."
   (interactive)
@@ -143,6 +155,8 @@ file if open."
 (setq php-auto-yasnippet-php-program (concat plugins-dir "/php-auto-yasnippets/Create-PHP-YASnippet.php"))
 (define-key php-mode-map (kbd "C-c C-y") 'yas/create-php-snippet)
 
+(evil-declare-key 'normal php-mode-map ",t" 'gf/tmux-phpunit-file)
+(evil-declare-key 'normal php-mode-map ",T" 'gf/tmux-phpunit)
 (evil-declare-key 'normal php-mode-map ",z" 'gf/toggle-php-web-mode)
 (evil-declare-key 'normal web-mode-map ",z" 'gf/toggle-php-web-mode)
 (define-key php-mode-map (kbd "C-c i") 'gf/php-insert-use-class)

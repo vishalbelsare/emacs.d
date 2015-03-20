@@ -14,6 +14,10 @@
 ;; Overriding this function so Emacs.app on OSX works.
 (defun emamux:in-tmux-p () t)
 
+(defun gf/emamux:current-session ()
+  ""
+  (process-file "tmux" nil nil nil "display-message -p '#S'"))
+
 ;;; Bound to ,T
 (require 'try-code)
 
