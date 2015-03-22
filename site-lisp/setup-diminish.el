@@ -2,7 +2,6 @@
 (dolist (mode '(
                 abbrev-mode
                 auto-complete-mode
-                autopair-mode
                 eldoc-mode
                 flycheck-mode
                 flyspell-mode
