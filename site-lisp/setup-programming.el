@@ -1,9 +1,4 @@
-(require 'autopair)
-(setq autopair-blink nil)
-(autopair-global-mode t)
-
-;; (require 'smartparens)
-;; (smartparens-mode t)
+(require 'setup-smartparens)
 
 (require 'git-gutter)
 (global-git-gutter-mode)

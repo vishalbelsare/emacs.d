@@ -16,7 +16,6 @@
         ag
         apache-mode
         auto-complete
-        autopair
         browse-kill-ring
         color-theme-sanityinc-tomorrow
         diminish
