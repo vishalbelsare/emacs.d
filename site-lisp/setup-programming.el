@@ -29,7 +29,6 @@
 
 (require 'setup-eshell)
 (require 'setup-flycheck)
-(require 'magit)
-(require 'git-commit-mode)
+(require 'setup-magit)
 
 (provide 'setup-programming)
