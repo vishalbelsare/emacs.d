@@ -43,7 +43,6 @@
   (setq ethan-wspace-errors (remove 'tabs ethan-wspace-errors)))
 
 (add-hook 'makefile-mode-hook 'tabs-are-less-evil)
-(add-hook 'git-commit-mode-hook 'tabs-are-less-evil)
 
 ;; Change to unix line endings when loading a DOS file
 ;; http://www.emacswiki.org/emacs/DosToUnix

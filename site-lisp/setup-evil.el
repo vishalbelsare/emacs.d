@@ -73,7 +73,6 @@
 (add-to-list 'evil-emacs-state-modes 'package-menu-mode)
 (evil-set-initial-state 'package-menu-mode 'normal)
 (evil-set-initial-state 'org-capture-mode 'insert)
-(evil-set-initial-state 'git-commit-mode 'insert)
 (evil-set-initial-state 'occur-mode 'normal)
 
 ;; Expand region

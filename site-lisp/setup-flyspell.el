@@ -2,7 +2,7 @@
 (setq flyspell-issue-message-flag nil)
 
 ;; spell checking in certain modes
-(dolist (hook '(org-mode-hook git-commit-mode-hook))
+(dolist (hook '(org-mode-hook))
   (add-hook hook (lambda ()
                    (flyspell-mode 1)
                    (auto-fill-mode 1)
