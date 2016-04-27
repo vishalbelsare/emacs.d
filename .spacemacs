@@ -29,13 +29,16 @@ values."
      git
      ;; markdown
      org
+     php
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
+     gf-general
      gf-org
+     gf-php
      gf-yasnippet
      )
    ;; List of additional packages that will be installed without being
