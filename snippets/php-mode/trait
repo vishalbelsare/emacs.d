@@ -4,10 +4,10 @@
 # --
 <?php
 
-namespace ${1:`(gf/php-current-file-namespace)`};
+namespace ${1:`(gf-php/current-file-namespace)`};
 
 /**
- * ${2:`(buffer-file-name-body)`}
+ * ${2:`(gf-yasnippet/buffer-file-name-body)`}
  *
  * @author Glynn Forrest <me@glynnforrest.com>
  **/

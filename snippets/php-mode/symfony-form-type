@@ -4,18 +4,18 @@
 # --
 <?php
 
-namespace `(gf/php-current-file-namespace)`;
+namespace `(gf-php/current-file-namespace)`;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * `(buffer-file-name-body)`
+ * `(gf-yasnippet/buffer-file-name-body)`
  *
  * @author Glynn Forrest <me@glynnforrest.com>
  **/
-class `(buffer-file-name-body)` extends AbstractType
+class `(gf-yasnippet/buffer-file-name-body)` extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

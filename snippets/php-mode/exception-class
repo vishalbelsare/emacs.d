@@ -5,13 +5,13 @@
 # --
 <?php
 
-namespace `(gf/php-current-file-namespace)`;
+namespace `(gf-php/current-file-namespace)`;
 
 /**
- * `(buffer-file-name-body)`
+ * `(gf-yasnippet/buffer-file-name-body)`
  *
  * @author Glynn Forrest <me@glynnforrest.com>
  **/
-class `(buffer-file-name-body)` extends \Exception
+class `(gf-yasnippet/buffer-file-name-body)` extends \Exception
 {$0
 }
