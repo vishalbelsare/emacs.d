@@ -11,4 +11,5 @@ clone:
 
 install:
 	ln -svf `pwd`/.spacemacs ~/.spacemacs
+	ln -svf `pwd` ~/.spacemacs-layers
 
