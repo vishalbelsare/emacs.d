@@ -13,13 +13,6 @@
         (kbd "M-J") 'org-shiftmetadown))
     '(normal insert))
 
-;;Notes are grouped by months for automatic archival.
-;;At the start of every month move over notes that are still relevant.
-(setq org-directory "~/notes/")
-(setq org-listen-read-watch-file (concat org-directory "topics/listen-read-watch.org"))
-
-(setq org-files (append (file-expand-wildcards (concat org-directory "*/*.org"))
-                        (file-expand-wildcards (concat org-directory "*/*/*.org"))))
 
 
 ;; Split up the search string on whitespace
@@ -27,23 +20,6 @@
 
 ;; quick hotkey for searching notes
 (define-key global-map (kbd "C-c n") 'org-search-view)
-
-(defun gf/org-reload ()
-  "Reload the org file for the current month - useful for a long
-running emacs instance."
-  (interactive)
-  (setq gf/current-month-notes-last-visited nil)
-  ;; Agenda files are only used for searching - my notes are designed to
-  ;; work without scheduling, tags etc
-  (setq org-agenda-files (append
-                          (file-expand-wildcards (concat org-directory "dates/*.org"))
-                          (file-expand-wildcards (concat org-directory "topics/*.org"))
-                          (file-expand-wildcards (concat org-directory "topics/*/*.org"))))
-  (setq org-default-notes-file
-        (concat org-directory "dates/"
-                (downcase (format-time-string "%Y-%B.org")))))
-
-(gf/org-reload)
 
 (setq org-refile-targets
       '((nil :maxlevel . 2)))
@@ -68,12 +44,6 @@ running emacs instance."
 
 (defvar gf/current-month-notes-last-visited nil
   "The last date the org file for the current month was opened.")
-
-(defun gf/find-current-month-notes-file ()
-  "Find the org file for the current month"
-  (interactive)
-  (setq gf/current-month-notes-last-visited (format-time-string "%D"))
-  (find-file org-default-notes-file))
 
 (defun gf/check-current-month-notes-reminder ()
   "Show a reminder message if the current notes file hasn't been visited today."
