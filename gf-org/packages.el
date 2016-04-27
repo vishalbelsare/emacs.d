@@ -16,11 +16,12 @@
 Notes are grouped by months for automatic archival.
 At the start of every month, move over notes/tasks that are still relevant.
 "
-  (setq org-directory "~/notes/")
-  (setq org-listen-read-watch-file (concat org-directory "topics/listen-read-watch.org"))
-
-  (setq org-files (append (file-expand-wildcards (concat org-directory "*/*.org"))
-                          (file-expand-wildcards (concat org-directory "*/*/*.org"))))
+  (setq org-directory (expand-file-name "~/notes/"))
+  (setq gf-org/projects-dir (concat org-directory  "projects"))
+  (setq gf-org/listen-read-watch-file (concat org-directory "topics/listen-read-watch.org"))
+  (setq gf-org/refile-candidates
+        (append (file-expand-wildcards (concat org-directory "*/*.org"))
+                (file-expand-wildcards (concat org-directory "*/*/*.org"))))
 
   (gf-org/reload)
   )
