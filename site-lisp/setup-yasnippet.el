@@ -1,7 +1,5 @@
 (require 'yasnippet)
 ;; Don't use bundled snippets
-(setq yas/snippet-dirs '("~/.emacs.d/snippets"))
-(yas/global-mode 1)
 
 ;; cludgy hack to favor candidates over the input by setting REQUIRE-MATCH.
 (defun gf/yas-completing-prompt (prompt choices &optional display-fn completion-fn)
@@ -20,21 +18,6 @@
 (add-to-list 'auto-mode-alist '("\\.yasnippet$" . snippet-mode))
 ;; don't expand part of words
 (setq yas/key-syntaxes '("w_" "w_." "^ "))
-
-;; used by some of the snippets
-(defun buffer-file-name-body ()
-  (if (buffer-file-name)
-	  (first (split-string (file-name-nondirectory (buffer-file-name)) "\\.")))
-  )
-
-(defun gf/filename-extension (filename)
-  "Get the extension from a file path."
-  (car (last (s-split "\\." filename))))
-
-(defun gf/in-file-type (extension)
-  "Return t if the extension of the current buffer file matches
-EXTENSION. Only the last extension of the file is considered."
-  (equal extension (gf/filename-extension (buffer-file-name))))
 
 (define-key yas-minor-mode-map (kbd "TAB") 'yas-expand)
 
