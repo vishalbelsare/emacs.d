@@ -24,6 +24,6 @@ At the start of every month, move over notes/tasks that are still relevant.
                 (file-expand-wildcards (concat org-directory "*/*/*.org"))))
 
   (gf-org/reload)
-  )
+  (setq org-startup-indented nil))
 
 ;;; packages.el ends here
