@@ -15,14 +15,10 @@
 
 
 
-;; Split up the search string on whitespace
-(setq org-agenda-search-view-always-boolean t)
 
 ;; quick hotkey for searching notes
 (define-key global-map (kbd "C-c n") 'org-search-view)
 
-(setq org-refile-targets
-      '((nil :maxlevel . 2)))
 
 (defun gf/org-refile-files-first ()
   "Choose an org file to file in, then pick the node. This prevents
@@ -128,22 +124,6 @@ TODO keywords, stars and list indicators."
   (re-search-forward "^\\*+ NEXT")
   (gf/evil-org-beginning-of-line))
 
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
-    (sequence "WAITING(w)" "|" "CANCELLED(c)")))
-
-(setq org-log-done t)
-
-(setq org-todo-keyword-faces
-      (quote (("TODO" :foreground "#dc322f" :weight bold)
-          ("DONE" :foreground "forest green" :weight bold :strike-through t)
-          ("WAITING" :foreground "#89BDFF" :weight bold))))
-
-;;; Make it impossible to complete a task if subtasks are not done
-(setq org-enforce-todo-dependencies t)
-
-(setq org-use-fast-todo-selection t)
-
 (evil-declare-key 'normal org-mode-map "^" 'gf/evil-org-beginning-of-line)
 (evil-declare-key 'normal org-mode-map "I"
   (lambda ()
@@ -156,23 +136,6 @@ TODO keywords, stars and list indicators."
 
 (evil-declare-key 'normal org-mode-map (kbd "M-i") 'org-display-inline-images)
 (evil-declare-key 'normal org-mode-map (kbd "M-I") 'org-remove-inline-images)
-
-(setq org-capture-templates
-      '(("t" "Todo" entry (file+headline org-default-notes-file "Tasks")
-     "* TODO %?" :prepend t)
-    ("n" "Note" entry (file+headline org-default-notes-file "Notes")
-     "* %?")
-    ("T" "Project Todo" entry (file+headline gf/current-project-file "Tasks")
-     "* TODO %?" :prepend t)
-    ("N" "Project Note" entry (file+headline gf/current-project-file "Notes")
-     "* %?")
-    ("l" "Listen" entry (file+headline org-listen-read-watch-file "Listen")
-     "* %?")
-    ("r" "Read" entry (file+headline org-listen-read-watch-file "Read")
-     "* %?")
-    ("w" "Watch" entry (file+headline org-listen-read-watch-file "Watch")
-     "* %?")
-    ))
 
 ;; Behaviour for capturing notes using make-capture-frame
 (defadvice org-capture-finalize
@@ -204,16 +167,5 @@ TODO keywords, stars and list indicators."
    (python . t)
    (sh . t)
    ))
-
-(setq org-confirm-babel-evaluate nil)
-(setq org-src-fontify-natively t)
-(setq org-src-tab-acts-natively t)
-
-(evil-declare-key 'normal org-mode-map ",e" 'org-ctrl-c-ctrl-c)
-
-(evil-declare-key 'normal org-mode-map ",a" 'helm-org-headlines)
-
-;; This gets org-cycle working in the terminal properly.
-(evil-declare-key 'normal org-mode-map (kbd "TAB") 'org-cycle)
 
 (provide 'setup-org)
