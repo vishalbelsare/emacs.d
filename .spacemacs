@@ -26,6 +26,7 @@ values."
      auto-completion
      ;; better-defaults
      emacs-lisp
+     html
      git
      ;; markdown
      org
