@@ -70,3 +70,59 @@
                 :must-match t
                 )))
     (insert class)))
+
+(defun gf/php-insert-symfony-service ()
+  "Insert a service name for the current symfony project."
+  (interactive)
+  (let ((service (helm-comp-read
+                  "Service: "
+                  (gf/helm-candidates-from-command "php bin/console debug:container | sed -E 's/^ +//g' | cut -d ' ' -f 1")
+                  :must-match t
+                  )))
+    (insert service)))
+
+(defun gf/php-insert-neptune-service ()
+  "Insert a service name for the current neptune php project."
+  (interactive)
+  (let ((service (helm-comp-read
+                  "Service: "
+                  (gf/helm-candidates-from-command "php neptune service:list -N | tail -n +2")
+                  :must-match t
+                  )))
+    (insert service)))
+
+(defun gf/php-insert-service ()
+  "Insert a service name for the current php project"
+  (interactive)
+  (if (gf/php-in-symfony-project-p)
+      (gf/php-insert-symfony-service)
+    (if (gf/php-in-neptune-project-p)
+        (gf/php-insert-neptune-service)
+      (message "Not in a symfony or neptune project."))))
+
+(defun gf/php-insert-symfony-route ()
+  "Insert a route name for the current symfony project."
+  (interactive)
+  (let ((candidate (helm-comp-read
+                  "Route: "
+                  (gf/helm-candidates-from-command "php bin/console debug:router | sed -E 's/^ +//g' |  cut -d ' ' -f 1 | tail -n +3")
+                  :must-match t
+                  )))
+    (insert candidate)))
+
+(defun gf/helm-candidates-from-command (command)
+  "Get helm candidates from running a command in the projectile root."
+  (interactive)
+  (split-string (shell-command-to-string
+                 (concat "cd " (projectile-project-root) " && " command)) "\n" t))
+
+(defun gf/php-in-symfony-project-p ()
+  "Return t if the current projectile project is a symfony project."
+  (or
+   (file-exists-p (concat (projectile-project-root) "app/console"))
+   (file-exists-p (concat (projectile-project-root) "application/app/console"))))
+
+(defun gf/php-in-neptune-project-p ()
+  "Return t if the current projectile project is a neptune php project."
+  (file-exists-p (concat (projectile-project-root) "neptune")))
+
