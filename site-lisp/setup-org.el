@@ -29,15 +29,6 @@
       (org-refile)))
   (org-save-all-org-buffers))
 
-(defun gf/commit-notes ()
-  "Commit all org files to git with the current date and time. New files must be explicitly added - this prevents accidental committing of junk files"
-  (interactive)
-  (let ((old-dir default-directory))
-    (cd org-directory)
-    (shell-command (concat "git add -u . && git commit -m \"" (format-time-string "%a %e %b %H:%M:%S\"")))
-    (cd old-dir)
-    ))
-
 (defvar gf/current-month-notes-last-visited nil
   "The last date the org file for the current month was opened.")
 
@@ -48,10 +39,6 @@
 
 (add-hook 'find-file-hook 'gf/check-current-month-notes-reminder)
 
-(define-key global-map (kbd "C-x C-n") 'gf/commit-notes)
-
-(define-key global-map (kbd "M-n") 'org-capture)
-(define-key global-map (kbd "M-N") 'gf/find-current-month-notes-file)
 (define-key global-map (kbd "C-c C-n") (lambda ()
                                        (interactive)
                                        (projectile-find-file-in-directory org-directory)))

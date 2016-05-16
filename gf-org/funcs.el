@@ -23,6 +23,14 @@ running emacs instance."
   (setq gf-org/current-month-last-visited (format-time-string "%D"))
   (find-file org-default-notes-file))
 
+(defun gf-org/commit-notes ()
+  "Commit all org files to git with the current date and time. New files must be explicitly added - this prevents accidental committing of junk files"
+  (interactive)
+  (let ((old-dir default-directory))
+    (cd org-directory)
+    (shell-command (concat "git add -u . && git commit -m \"" (format-time-string "%a %e %b %H:%M:%S\"")))
+    (cd old-dir)))
+
 
 ;; projects
 
