@@ -32,13 +32,13 @@ values."
      ;; markdown
      org
      php
+     (version-control :variables version-control-diff-tool 'diff-hl )
      yaml
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      ;; spell-checking
      ;; syntax-checking
-     ;; version-control
      gf-general
      gf-org
      gf-php
