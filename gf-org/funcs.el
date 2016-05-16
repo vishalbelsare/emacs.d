@@ -31,6 +31,15 @@ running emacs instance."
     (shell-command (concat "git add -u . && git commit -m \"" (format-time-string "%a %e %b %H:%M:%S\"")))
     (cd old-dir)))
 
+(defun gf-org/refile-files-first ()
+  "Choose an org file to file in, then pick the node. This prevents
+  emacs opening all of the refile targets at once."
+  (interactive)
+  (let ((file (list (completing-read "Refile to: " gf-org/refile-candidates nil t))))
+    (let ((org-refile-targets `((,file :maxlevel . 1))))
+      (org-refile)))
+  (org-save-all-org-buffers))
+
 
 ;; projects
 

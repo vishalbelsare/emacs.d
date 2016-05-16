@@ -19,16 +19,6 @@
 ;; quick hotkey for searching notes
 (define-key global-map (kbd "C-c n") 'org-search-view)
 
-
-(defun gf/org-refile-files-first ()
-  "Choose an org file to file in, then pick the node. This prevents
-  emacs opening all of the refile targets at once."
-  (interactive)
-  (let ((file (list (completing-read "Refile to: " org-files nil t))))
-    (let ((org-refile-targets `((,file :maxlevel . 1))))
-      (org-refile)))
-  (org-save-all-org-buffers))
-
 (defvar gf/current-month-notes-last-visited nil
   "The last date the org file for the current month was opened.")
 
@@ -50,14 +40,6 @@
 
 (evil-declare-key 'normal org-mode-map (kbd "gn") 'gf/org-go-to-next-task)
 (define-key org-mode-map (kbd "C-c t") 'org-todo)
-
-;; refile over files
-(evil-declare-key 'normal org-mode-map (kbd "C-c r") 'gf/org-refile-files-first)
-(evil-declare-key 'visual org-mode-map (kbd "C-c r") 'gf/org-refile-files-first)
-
-;; refile withing the same file
-(evil-declare-key 'normal org-mode-map (kbd "C-c R") 'org-refile)
-(evil-declare-key 'visual org-mode-map (kbd "C-c R") 'org-refile)
 
 (evil-declare-key 'insert org-mode-map (kbd "M-<return>") (lambda()
                                 (interactive)
