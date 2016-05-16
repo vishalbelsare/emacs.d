@@ -5,6 +5,7 @@
     ;; remove after https://github.com/syl20bnr/spacemacs/pull/5831 is in a release
     request
     scss-mode
+    yaml-mode
     ))
 
 (defun gf-general/init-wgrep-helm ()
