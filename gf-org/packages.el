@@ -68,6 +68,7 @@ At the start of every month, move over notes/tasks that are still relevant.
            "* %?")
           ))
 
+  (add-hook 'org-mode-hook 'auto-fill-mode)
   )
 
 ;;; packages.el ends here
