@@ -51,15 +51,6 @@ file if open."
 
 (evil-declare-key 'normal php-mode-map "o" 'gf/evil-open-below-docblock)
 
-(defun gf/php-cleanup-style ()
-  "Cleanup the style of the current php file with php-cs-fixer."
-  (interactive)
-  (save-buffer)
-  (shell-command (concat "php-cs-fixer fix " (buffer-file-name)))
-  (let ((point (point)))
-    (revert-buffer t t)
-    (goto-char point)))
-
 (defun gf/php-in-template-p ()
   "Return t if the current php file looks like a template."
   (and (> (point-max) 5)

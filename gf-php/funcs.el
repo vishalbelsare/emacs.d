@@ -126,3 +126,11 @@
   "Return t if the current projectile project is a neptune php project."
   (file-exists-p (concat (projectile-project-root) "neptune")))
 
+(defun gf-php/cleanup-style ()
+  "Cleanup the style of the current php file with php-cs-fixer."
+  (interactive)
+  (save-buffer)
+  (shell-command (concat "php-cs-fixer fix " (buffer-file-name)))
+  (let ((point (point)))
+    (revert-buffer t t)
+    (goto-char point)))
