@@ -13,9 +13,12 @@ running emacs instance."
                           (file-expand-wildcards (concat org-directory "dates/*.org"))
                           (file-expand-wildcards (concat org-directory "topics/*.org"))
                           (file-expand-wildcards (concat org-directory "topics/*/*.org"))))
-  (setq org-default-notes-file
-        (concat org-directory "dates/"
-                (downcase (format-time-string "%Y-%B.org")))))
+  (setq org-default-notes-file (gf-org/current-month-notes-file)))
+
+(defun gf-org/current-month-notes-file ()
+  "Get the path of the org file for the current month."
+  (concat org-directory "dates/"
+          (downcase (format-time-string "%Y-%B.org"))))
 
 (defun gf-org/find-current-month-notes-file ()
   "Find the org file for the current month"
