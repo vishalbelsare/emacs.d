@@ -23,6 +23,13 @@ At the start of every month, move over notes/tasks that are still relevant.
         (append (file-expand-wildcards (concat org-directory "*/*.org"))
                 (file-expand-wildcards (concat org-directory "*/*/*.org"))))
   (use-package org
+    :init
+    (progn
+      ;; refile over files
+      (spacemacs/set-leader-keys-for-major-mode 'org-mode "r" 'gf-org/refile-files-first)
+      ;; refile withing the same file
+      (spacemacs/set-leader-keys-for-major-mode 'org-mode "R" 'org-refile)
+      )
     :config
     (progn
       (gf-org/reload)
