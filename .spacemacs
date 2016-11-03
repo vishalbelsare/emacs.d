@@ -23,16 +23,22 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     ansible
      auto-completion
      ;; better-defaults
      colors
      emacs-lisp
-     html
      git
-     ;; markdown
+     go
+     html
+     javascript
+     markdown
      org
      php
+     python
+     ruby
      salt
+     spell-checking
      (version-control :variables version-control-diff-tool 'diff-hl )
      yaml
      ;; (shell :variables
