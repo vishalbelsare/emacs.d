@@ -136,9 +136,6 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
 
-;; Load personal configurations, like usernames and passwords
-(require 'personal nil t)
-
 ;; Load appearance early to reduce flicker of default emacs
 (require 'appearance)
 
