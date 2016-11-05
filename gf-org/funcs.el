@@ -58,13 +58,25 @@ path."
                             (substring last 1) last)))
             ".org")))
 
-(defvar gf-org/project-org-file-overrides '()
-  "A list of projectile directories and the specified project org file for them.")
+(defvar gf-org/project-org-file-override-alist '()
+  "An association list of projectile directories and the project org file for them.
+
+This enables overriding the default behaviour of `gf-org/resolve-project-org-file'.
+
+CAR must be an absolute path to a project, including a trailing slash.
+CDR must be a path to an org file, relative to `org-directory'.
+
+Example:
+
+'((\"/home/emacs/some-company/some-project\" \"projects/some-company.org\")
+(\"/home/emacs/some-company/different-project\" \"projects/some-company.org\"))")
 
 (defun gf-org/resolve-project-org-file ()
   "Get the path of the org file for the current project, either by creating a
-suitable name automatically or fetching from gf-org/project-org-file-overrides."
-  (gf-org/create-org-path (projectile-project-root)))
+suitable name automatically or fetching from gf-org/project-org-file-override-alist."
+  (if (assoc (projectile-project-root) gf-org/project-org-file-override-alist)
+      (concat org-directory (cadr (assoc (projectile-project-root) gf-org/project-org-file-override-alist)))
+      (gf-org/create-org-path (projectile-project-root))))
 
 (defun gf-org/switch-to-project-org-file ()
   "Switch to the org file for the current project."
