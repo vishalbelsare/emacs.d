@@ -77,15 +77,6 @@
   (org-forward-element 1)
   (previous-line 1))
 
-(defun gf/evil-org-beginning-of-line ()
-  "Move to the beginning of the line in an org-mode file, ignoring
-TODO keywords, stars and list indicators."
-  (interactive)
-  (beginning-of-line)
-  (if (looking-at-p " ") (evil-forward-word-begin))
-  (if (looking-at-p "*") (evil-forward-word-begin))
-  (if (looking-at-p "TODO\\|DONE\\|NEXT\\|WAITING") (evil-forward-word-begin)))
-
 (defun gf/org-go-to-next-task ()
   "Go to the first org item in the buffer tagged as `NEXT`."
   (interactive)

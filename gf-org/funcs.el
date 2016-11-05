@@ -87,4 +87,13 @@ current project."
       (puthash file (current-buffer) gf-org/previous-project-buffers)
       (find-file file))))
 
+(defun gf-org/beginning-of-line ()
+  "Move to the beginning of the line in an org-mode file, ignoring
+TODO keywords, stars and list indicators."
+  (interactive)
+  (org-beginning-of-line)
+  (if (looking-at-p " ") (evil-forward-word-begin))
+  (if (looking-at-p "*") (evil-forward-word-begin))
+  (if (looking-at-p "TODO\\|DONE\\|NEXT\\|WAITING\\|CANCELLED") (evil-forward-word-begin)))
+
 ;;; funcs.el ends here
