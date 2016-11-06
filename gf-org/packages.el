@@ -22,13 +22,15 @@ At the start of every month, move over notes/tasks that are still relevant.
   (setq gf-org/refile-candidates
         (append (file-expand-wildcards (concat org-directory "*/*.org"))
                 (file-expand-wildcards (concat org-directory "*/*/*.org"))))
+  (evil-define-key 'normal org-mode-map "^" 'gf-org/beginning-of-line)
+  ;; refile over files
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode "r" 'gf-org/refile-files-first)
+  ;; refile withing the same file
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode "R" 'org-refile)
+
   (use-package org
     :init
     (progn
-      ;; refile over files
-      (spacemacs/set-leader-keys-for-major-mode 'org-mode "r" 'gf-org/refile-files-first)
-      ;; refile withing the same file
-      (spacemacs/set-leader-keys-for-major-mode 'org-mode "R" 'org-refile)
       )
     :config
     (progn
