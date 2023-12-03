@@ -1,3 +1,6 @@
+(require 'general)
+(require 's)
+
 (defun gf/buffer-file-name-body ()
   (if (buffer-file-name)
       (car (split-string (file-name-nondirectory (buffer-file-name)) "\\."))))
@@ -135,6 +138,43 @@ ERC buffer."
   "Generate a hexadecimal string."
   (let ((hash (md5 (number-to-string (random)))))
             (substring hash 0 length)))
+
+(defmacro gf/link-handler (name key regex transform-match)
+  (let ((func-name-get (intern (format "gf/get-%s-link" name)))
+        (func-name-open (intern (format "gf/open-%s-link" name)))
+        (func-name-copy (intern (format "gf/copy-%s-link" name))))
+    `(progn
+       (defun ,func-name-get ()
+         (let ((match (gf/regex-dwim ,regex)))
+           (if match
+               (,transform-match match)
+             nil)))
+       (defun ,func-name-open ()
+         (interactive)
+         (let ((url (,func-name-get)))
+           (if url
+               (browse-url url)
+             (error (format "no %s match found" ,name)))))
+       (defun ,func-name-copy ()
+         (interactive)
+         (message (,func-name-get)))
+       (general-define-key
+        :states '(normal visual insert emacs)
+        :prefix "SPC"
+        :non-normal-prefix "M-SPC"
+        ,(concat "g" key) ',func-name-open))))
+
+(defun gf/regex-dwim (regex)
+  (save-excursion
+    (save-match-data
+      (if (eq major-mode 'org-mode)
+          (gf/org-up-to-level 2)
+        (if (derived-mode-p 'prog-mode)
+            (beginning-of-defun)
+          (beginning-of-line)))
+      (if (re-search-forward regex (line-end-position) t)
+          (match-string-no-properties 0)))))
+
 
 (defun gf/uuid ()
   "Generate a pseudo-random UUID. Just the format, not adhering to any versioned UUID spec."
